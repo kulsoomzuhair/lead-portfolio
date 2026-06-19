@@ -125,9 +125,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log(`[FORM SUBMIT] Name: ${name}, Email: ${email}, Type: ${projectType}, Message: ${message}`);
             
-            // Show Success Toast
+            // Show Success Toast immediately
             toastSuccess.classList.add('active');
             
+            // Check if Web3Forms key is configured
+            const formData = new FormData(contactForm);
+            const accessKey = formData.get('access_key');
+
+            if (accessKey && accessKey !== 'YOUR_ACCESS_KEY_HERE') {
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("[FORM SUBMIT SUCCESS]", data);
+                })
+                .catch(error => {
+                    console.error("[FORM SUBMIT ERROR]", error);
+                });
+            }
+
             // Reset form fields
             contactForm.reset();
             
