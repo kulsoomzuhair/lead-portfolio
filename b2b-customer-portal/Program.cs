@@ -20,9 +20,12 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 app.UseCors("AllowAll");
+app.UseDefaultFiles();
 app.UseStaticFiles(); // Serves index.html, style.css, app.js from wwwroot
 
 // Auto-create/migrate SQLite database on startup
