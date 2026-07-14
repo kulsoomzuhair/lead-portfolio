@@ -1,0 +1,786 @@
+/* =========================================================================
+   B2B CUSTOMER PORTAL STYLE SYSTEM
+   Theme: Premium Dark Glassmorphism
+   ========================================================================= */
+
+:root {
+    --bg-primary: #09090e;
+    --bg-secondary: rgba(18, 18, 29, 0.6);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-primary: #6366f1; /* Indigo */
+    --accent-blue: #3b82f6;
+    --accent-success: #10b981; /* Emerald */
+    --accent-danger: #ef4444;
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --glass-glow: radial-gradient(120% 120% at 50% -20%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+}
+
+/* Common UI Helpers */
+.hide { display: none !important; }
+.gradient-text {
+    background: linear-gradient(135deg, #a78bfa, var(--accent-primary), #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.highlight { color: var(--accent-primary); }
+.field-hint {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    display: block;
+}
+.error-msg {
+    color: var(--accent-danger);
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-top: 16px;
+    text-align: center;
+}
+
+/* Custom Badges */
+.badge-status {
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.badge-status.unpaid { background-color: rgba(239, 68, 68, 0.1); color: var(--accent-danger); }
+.badge-status.paid { background-color: rgba(16, 185, 129, 0.1); color: var(--accent-success); }
+.badge-status.pending { background-color: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+.badge-status.synced { background-color: rgba(16, 185, 129, 0.1); color: var(--accent-success); }
+.badge-status.failed { background-color: rgba(239, 68, 68, 0.1); color: var(--accent-danger); }
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.btn-primary {
+    background-color: var(--accent-primary);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #4f46e5;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+.btn-success {
+    background-color: var(--accent-success);
+    color: white;
+}
+.btn-success:hover {
+    background-color: #059669;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+.w-100 { width: 100%; }
+
+/* =========================================================================
+   1. AUTHENTICATION CONTAINER (LOGIN CARD)
+   ========================================================================= */
+
+.auth-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.15), transparent 40%),
+                radial-gradient(circle at 10% 80%, rgba(59, 130, 246, 0.12), transparent 40%);
+}
+
+.auth-card-glass {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    border-radius: 24px;
+    padding: 48px;
+    width: 100%;
+    max-width: 440px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-card-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-blue));
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-header h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.85rem;
+    margin: 12px 0 6px;
+}
+
+.auth-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.logo-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-blue));
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+}
+
+.form-group {
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: white;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+}
+
+/* =========================================================================
+   2. MAIN PORTAL LAYOUT
+   ========================================================================= */
+
+.portal-layout {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Sidebar Navigation */
+.portal-sidebar {
+    width: 280px;
+    background-color: #0b0b13;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 48px;
+}
+
+.sidebar-header h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+}
+
+.sidebar-header .logo-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    border-radius: 8px;
+    margin: 0;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 14px 18px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.nav-item.active {
+    color: white;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.sidebar-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.user-info h5 {
+    font-size: 0.95rem;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-info p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.btn-logout {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+    text-align: left;
+    width: fit-content;
+}
+
+.btn-logout:hover {
+    color: var(--accent-danger);
+}
+
+/* Main Content Panel */
+.portal-main {
+    flex-grow: 1;
+    padding: 48px;
+    overflow-y: auto;
+    background: radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.05), transparent 30%);
+}
+
+.tab-view {
+    display: none;
+}
+
+.tab-view.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+.view-header {
+    margin-bottom: 40px;
+}
+
+.view-header h2 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.view-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* =========================================================================
+   A. DASHBOARD TAB
+   ========================================================================= */
+
+.dashboard-header {
+    margin-bottom: 40px;
+}
+
+.dashboard-header h2 {
+    font-size: 2.25rem;
+    margin-bottom: 8px;
+}
+
+.dashboard-header p {
+    color: var(--text-secondary);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: var(--shadow);
+}
+
+.card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.card-icon.blue { background-color: rgba(59, 130, 246, 0.1); color: var(--accent-blue); }
+.card-icon.red { background-color: rgba(239, 68, 68, 0.1); color: var(--accent-danger); }
+.card-icon.green { background-color: rgba(16, 185, 129, 0.1); color: var(--accent-success); }
+
+.card-info span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.card-info h3 {
+    font-size: 1.5rem;
+    margin-top: 4px;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Credit Utilization Progress Bar */
+.utilization-section {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+}
+
+.utilization-section h4 {
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-primary));
+    border-radius: 50px;
+    transition: width 0.8s ease-out;
+}
+
+/* =========================================================================
+   B. CATALOG TAB (PRODUCT CARDS)
+   ========================================================================= */
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.product-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.prod-badge {
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: var(--text-secondary);
+}
+
+.product-card h4 {
+    font-size: 1.15rem;
+    line-height: 1.4;
+    height: 52px;
+    overflow: hidden;
+}
+
+.price-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px 0;
+}
+
+.base-price {
+    font-size: 0.8rem;
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.contract-price {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent-success);
+    font-family: 'Outfit', sans-serif;
+}
+
+.contract-price span {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-left: 4px;
+}
+
+.stock-status {
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stock-status.in-stock { color: var(--accent-success); }
+.stock-status.low-stock { color: #f59e0b; }
+
+.cart-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: auto;
+}
+
+.qty-input {
+    width: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* =========================================================================
+   C. INVOICES & DATA TABLES
+   ========================================================================= */
+
+.invoice-table-container, .log-table-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.portal-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.portal-table th {
+    background-color: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--border-color);
+    padding: 18px 24px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.portal-table td {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+}
+
+.portal-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.portal-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+.btn-table-action {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-table-action:hover {
+    background-color: #2563eb;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.btn-table-action:disabled {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* =========================================================================
+   D. SYNC MONITOR TAB
+   ========================================================================= */
+
+.monitor-controls {
+    margin-bottom: 24px;
+}
+
+/* =========================================================================
+   3. STRIPE SIMULATION MODAL
+   ========================================================================= */
+
+.payment-modal-overlay, .success-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(9, 9, 14, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.payment-modal-card {
+    background: #12121a;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.payment-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-close:hover { color: white; }
+
+.payment-modal-body {
+    padding: 24px;
+}
+
+.amount-strip {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.amount-strip span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.amount-strip h2 {
+    font-size: 2rem;
+    margin-top: 4px;
+    color: var(--accent-success);
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Stripe mock card field */
+.mock-card-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+
+.mock-card-input i {
+    color: var(--text-secondary);
+}
+
+.mock-card-input input {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.95rem;
+    outline: none;
+    width: 100%;
+}
+
+/* =========================================================================
+   4. SUCCESS POPUP MODAL
+   ========================================================================= */
+
+.success-card {
+    background: #12121a;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: var(--accent-success);
+    line-height: 1;
+}
+
+.success-card h3 {
+    font-size: 1.5rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.success-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.sap-sync-tag {
+    background-color: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    color: #a5b4fc;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =========================================================================
+   KEYFRAMES ANIMATION
+   ========================================================================= */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
