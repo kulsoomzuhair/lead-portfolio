@@ -155,4 +155,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 4000);
         });
     }
+    /* -----------------------------------------
+       6. FAQ Accordion Toggle
+       ----------------------------------------- */
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all FAQ items first
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.faq-answer').style.maxHeight = null;
+            });
+            
+            // If the clicked item wasn't active, open it
+            if (!isActive) {
+                item.classList.add('active');
+                const answer = item.querySelector('.faq-answer');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
 });

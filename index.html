@@ -37,7 +37,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css?v=1.4">
+    <link rel="stylesheet" href="style.css?v=1.5">
 
     <!-- Google tag (gtag.js) for Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4DMX8W0932"></script>
@@ -63,6 +63,7 @@
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#sapb1-architecture" class="nav-link">SAP B1 Systems</a>
                 <a href="#projects" class="nav-link">Case Studies</a>
+                <a href="#faq" class="nav-link">FAQ</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#contact" class="btn btn-primary nav-cta">Contact Me</a>
             </nav>
@@ -158,9 +159,9 @@
                         Connect SAP Business One to Shopify, WooCommerce, Salesforce, or your custom SaaS platform. I build custom .NET Core middleware utilizing the **SAP B1 Service Layer (REST)** and **DI API** to sync inventory, sales orders, customer data, and financial postings in real-time.
                     </p>
                     <ul class="service-bullets">
-                        <li><i class="bi bi-check-circle"></i> Service Layer & DI API Specialists</li>
-                        <li><i class="bi bi-check-circle"></i> E-Commerce & CRM Sync pipelines</li>
-                        <li><i class="bi bi-check-circle"></i> Custom transaction flow validation</li>
+                        <li><i class="bi bi-check-circle"></i> Service Layer & DI API Integration</li>
+                        <li><i class="bi bi-check-circle"></i> Sales Orders, Item Masters, & BP Sync</li>
+                        <li><i class="bi bi-check-circle"></i> A/R Invoices & Payment Ledger Postings</li>
                     </ul>
                 </div>
 
@@ -274,6 +275,10 @@
                 <div class="spec-card">
                     <h4><i class="bi bi-cpu"></i> Zero Out-of-Sync Errors</h4>
                     <p>My custom middleware maps data schemas carefully. It handles partial updates and includes local queues so transactions are retried automatically in case of temporary database locks.</p>
+                </div>
+                <div class="spec-card">
+                    <h4><i class="bi bi-bezier2"></i> Bidirectional Object Mapping</h4>
+                    <p>Fully supports custom User-Defined Fields (UDFs) and standard business objects, including Item Master, Business Partner Master, Sales Opportunities, Quotations, Orders, Deliveries, and Invoices.</p>
                 </div>
                 <div class="spec-card">
                     <h4><i class="bi bi-safe2"></i> Strict Compliance & Audit Logs</h4>
@@ -581,6 +586,74 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section id="faq" class="section faq-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="badge">FAQ</span>
+                <h2>Frequently Asked Questions</h2>
+                <p class="section-subtitle">Common questions about custom integrations, database security, and SAP B1 Service Layer compatibility.</p>
+            </div>
+
+            <div class="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you support both SAP HANA and Microsoft SQL Server versions?</span>
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, absolutely. My custom middleware connects via the SAP Business One Service Layer (OData REST API), which natively supports both SAP HANA and Microsoft SQL Server database environments. If you are on an older SAP version without the Service Layer, I can build integrations using DI Server or direct DI API wrappers.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do you guarantee inventory levels are synced in real time?</span>
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The middleware utilizes event-driven triggers. When inventory changes occur in SAP B1 (e.g., Goods Receipt, Delivery, or Stock Transfer), a webhook notifies the middleware to update the connected storefront (Shopify, WooCommerce, etc.) instantly. Additionally, we run a daily reconciliation check to ensure 100% data alignment.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do you handle connection drops or API failures?</span>
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The middleware is built with local failover storage and a retry queue. If your SAP B1 server goes offline or has network drops, incoming orders from your storefront are safely cached locally in a secure, encrypted database. The queue automatically retries sending the orders to SAP B1 once the connection is restored, ensuring zero lost transactions.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can you map custom User-Defined Fields (UDFs) and tables (UDTs)?</span>
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, this is a standard requirement for most SAP B1 deployments. The custom middleware layer includes a schema-mapping engine that allows us to map any custom fields (UDFs) on Business Partners, Items, Sales Orders, or Invoices to corresponding custom data fields on your e-commerce platform.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is the integration secure and compliant?</span>
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Security is a primary focus. All API traffic passes through secure HTTPS connections with JWT (JSON Web Tokens) or OAuth2 authentication. Credentials (SAP usernames, passwords, database settings) are encrypted and stored securely using environment variables or a key vault. We also implement IP whitelisting to restrict API access to trusted servers only.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section (Fiverr Gig Promotion) -->
     <section id="contact" class="section contact-section">
         <div class="container">
@@ -656,6 +729,6 @@
     </div>
 
     <!-- Script file -->
-    <script src="app.js"></script>
+    <script src="app.js?v=1.5"></script>
 </body>
 </html>

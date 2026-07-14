@@ -640,7 +640,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .architecture-specs {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
 }
 
@@ -1430,4 +1430,80 @@ h1, h2, h3, h4, h5, h6 {
 .fiverr-features li i {
     color: var(--accent-success);
     font-size: 1.2rem;
+}
+
+/* FAQ Section Styles */
+.faq-section {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: var(--shadow);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: var(--accent-primary);
+}
+
+.faq-question i {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(45deg);
+    color: var(--accent-primary);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+    padding: 0 24px;
+}
+
+.faq-item.active .faq-answer {
+    padding-bottom: 24px;
+}
+
+.faq-answer p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
 }
