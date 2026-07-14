@@ -23,20 +23,20 @@ namespace B2BCustomerPortal.Data
                 new BusinessPartner
                 {
                     CardCode = "C20000",
-                    CardName = "Hasan & Co.",
+                    CardName = "Fatima Logistics",
                     PriceListId = 1, // 10% discount list
                     CreditLimit = 5000m,
                     CurrentBalance = 1500m,
-                    PasswordHash = "hasan123" // Simplified auth
+                    PasswordHash = "fatima123" // Simplified auth
                 },
                 new BusinessPartner
                 {
                     CardCode = "C30000",
-                    CardName = "Zuhair Group",
+                    CardName = "KF Solutions",
                     PriceListId = 2, // 25% discount list
                     CreditLimit = 10000m,
                     CurrentBalance = 800m,
-                    PasswordHash = "zuhair123" // Simplified auth
+                    PasswordHash = "kf123" // Simplified auth
                 }
             );
 

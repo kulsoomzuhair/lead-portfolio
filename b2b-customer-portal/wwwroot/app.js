@@ -171,7 +171,7 @@ async function fetchDashboardStats() {
         const res = await fetch(`${API_BASE}/api/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ CardCode: currentCardCode, Password: currentCardCode === "C20000" ? "hasan123" : "zuhair123" }) // Silently refresh stats
+            body: JSON.stringify({ CardCode: currentCardCode, Password: currentCardCode === "C20000" ? "fatima123" : "kf123" }) // Silently refresh stats
         });
         const data = await res.json();
         if (res.ok && data.success) {

@@ -30,8 +30,8 @@ To demonstrate client-specific contract pricing and different credit limits, use
 
 | CardCode | Account Name | Password | Pricing Contract | Credit Limit |
 |---|---|---|---|---|
-| **`C20000`** | Hasan & Co. | `hasan123` | Price List 1 (10% Discount) | $5,000.00 |
-| **`C30000`** | Zuhair Group | `zuhair123` | Price List 2 (25% Discount) | $10,000.00 |
+| **`C20000`** | Fatima Logistics | `fatima123` | Price List 1 (10% Discount) | $5,000.00 |
+| **`C30000`** | KF Solutions | `kf123` | Price List 2 (25% Discount) | $10,000.00 |
 
 ---
 
@@ -46,7 +46,7 @@ When recording your video to show clients, follow this narrative structure:
 2.  **Demonstrate Contract Pricing (Catalog tab):**
     *   Go to the **Wholesale Catalog** tab.
     *   Show that the prices displayed are pre-discounted based on their SAP Price List contract: *"Notice how the SAP B1 WooCommerce Adapter is listed at $405.00 instead of the $450.00 retail base price (10% off contract)."*
-    *   Log out and log back in as `C30000`. Show the catalog again: *"Now, since Zuhair Group has a 25% discount price list, they see the same item at $337.50."*
+    *   Log out and log back in as `C30000`. Show the catalog again: *"Now, since KF Solutions has a 25% discount price list, they see the same item at $337.50."*
 3.  **Place a Bulk Order (Checkout flow):**
     *   Order 3 units of the *Shopify API Middleware*.
     *   Explain: *"When I click 'Order Item', the OrderAgent validates my credit limit, queues the transaction locally to prevent data loss, and makes a POST call to the SAP B1 Service Layer."*
