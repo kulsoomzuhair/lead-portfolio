@@ -1,0 +1,9 @@
+# .NET Build Output
+bin/
+obj/
+
+# SQLite databases & temp files
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
